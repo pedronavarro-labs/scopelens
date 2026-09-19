@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "engine_version": "0.1.0",
+  "task": "read-code",
+  "targets": [
+    "demo/docs"
+  ],
+  "github": {
+    "evidence": "declared",
+    "repository_selection": "all",
+    "repositories_complete": true,
+    "repositories": [
+      "demo/docs",
+      "demo/payments",
+      "demo/production"
+    ],
+    "permissions": {
+      "administration": "write",
+      "contents": "write",
+      "issues": "write",
+      "metadata": "read"
+    }
+  },
+  "permissions": [
+    {
+      "permission": "administration",
+      "observed": "write",
+      "needed": "none",
+      "status": "excess"
+    },
+    {
+      "permission": "contents",
+      "observed": "write",
+      "needed": "read",
+      "status": "excess"
+    },
+    {
+      "permission": "issues",
+      "observed": "write",
+      "needed": "none",
+      "status": "excess"
+    },
+    {
+      "permission": "metadata",
+      "observed": "read",
+      "needed": "read",
+      "status": "aligned"
+    }
+  ],
+  "findings": [
+    {
+      "id": "GH_PERMISSION_EXCESS",
+      "subject": "administration",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "write supplied; none expected for read-code.",
+      "recommendation": "Review administration: none. Confirm other workflows before changing a shared installation."
+    },
+    {
+      "id": "GH_PERMISSION_EXCESS",
+      "subject": "contents",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "write supplied; read expected for read-code.",
+      "recommendation": "Review contents: read. Confirm other workflows before changing a shared installation."
+    },
+    {
+      "id": "GH_PERMISSION_EXCESS",
+      "subject": "issues",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "write supplied; none expected for read-code.",
+      "recommendation": "Review issues: none. Confirm other workflows before changing a shared installation."
+    },
+    {
+      "id": "GH_EXTRA_REPOSITORY",
+      "subject": "demo/payments",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "Repository is outside the requested task scope.",
+      "recommendation": "Review the selected repository list."
+    },
+    {
+      "id": "GH_EXTRA_REPOSITORY",
+      "subject": "demo/production",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "Repository is outside the requested task scope.",
+      "recommendation": "Review the selected repository list."
+    },
+    {
+      "id": "GH_ALL_REPOSITORIES",
+      "subject": "installation",
+      "severity": "warning",
+      "evidence": "declared",
+      "reason": "Installation selection is all repositories.",
+      "recommendation": "Consider selected repositories for this bounded task."
+    },
+    {
+      "id": "GH_EFFECTIVE_ACCESS_UNKNOWN",
+      "subject": "installation",
+      "severity": "unknown",
+      "evidence": "declared",
+      "reason": "Installation grants or declared permissions are not effective token authorization.",
+      "recommendation": "Verify token restrictions, user access, repository rules and organization policy separately. No writes were attempted."
+    },
+    {
+      "id": "GH_DECLARED_INPUT",
+      "subject": "installation",
+      "severity": "unknown",
+      "evidence": "declared",
+      "reason": "Input was supplied manually and has not been verified against GitHub.",
+      "recommendation": "Validate the manifest against installation settings."
+    },
+    {
+      "id": "MCP_LOCAL_EXECUTION",
+      "subject": "mcp-server-1",
+      "severity": "unknown",
+      "evidence": "static-config",
+      "reason": "Configured server runs as a local process; OS access is not described here.",
+      "recommendation": "Review the executable and isolate untrusted servers. ScopeLens never starts it."
+    },
+    {
+      "id": "MCP_PACKAGE_RUNNER",
+      "subject": "mcp-server-1",
+      "severity": "warning",
+      "evidence": "static-config",
+      "reason": "A package runner is configured; version and artifact integrity need review.",
+      "recommendation": "Pin an exact version and verify its origin. Pinning alone does not prove safety."
+    },
+    {
+      "id": "MCP_CREDENTIAL_REVIEW",
+      "subject": "mcp-server-1",
+      "severity": "warning",
+      "evidence": "static-config",
+      "reason": "Possible embedded credentials or URL parameters found; values omitted.",
+      "recommendation": "Review locally; use your client secret mechanism. Heuristic detection can miss secrets or flag harmless values."
+    },
+    {
+      "id": "MCP_CAPABILITIES_UNKNOWN",
+      "subject": "mcp-server-1",
+      "severity": "unknown",
+      "evidence": "static-config",
+      "reason": "Configuration does not establish tool behavior or effective permissions.",
+      "recommendation": "Review server code and runtime authorization. Tool readOnlyHint is not an enforcement boundary."
+    },
+    {
+      "id": "MCP_PLAINTEXT_HTTP",
+      "subject": "mcp-server-2",
+      "severity": "warning",
+      "evidence": "static-config",
+      "reason": "Remote transport uses HTTP without TLS.",
+      "recommendation": "Use HTTPS for non-local traffic; assess loopback separately."
+    },
+    {
+      "id": "MCP_CAPABILITIES_UNKNOWN",
+      "subject": "mcp-server-2",
+      "severity": "unknown",
+      "evidence": "static-config",
+      "reason": "Configuration does not establish tool behavior or effective permissions.",
+      "recommendation": "Review server code and runtime authorization. Tool readOnlyHint is not an enforcement boundary."
+    }
+  ],
+  "summary": "Review required; this is not a security certification."
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "engine_version": "0.1.0",
+  "task": "read-code",
+  "targets": [
+    "demo/docs"
+  ],
+  "github": {
+    "evidence": "declared",
+    "repository_selection": "selected",
+    "repositories_complete": true,
+    "repositories": [
+      "demo/docs"
+    ],
+    "permissions": {
+      "contents": "read",
+      "metadata": "read"
+    }
+  },
+  "permissions": [
+    {
+      "permission": "contents",
+      "observed": "read",
+      "needed": "read",
+      "status": "aligned"
+    },
+    {
+      "permission": "metadata",
+      "observed": "read",
+      "needed": "read",
+      "status": "aligned"
+    }
+  ],
+  "findings": [
+    {
+      "id": "GH_EFFECTIVE_ACCESS_UNKNOWN",
+      "subject": "installation",
+      "severity": "unknown",
+      "evidence": "declared",
+      "reason": "Installation grants or declared permissions are not effective token authorization.",
+      "recommendation": "Verify token restrictions, user access, repository rules and organization policy separately. No writes were attempted."
+    },
+    {
+      "id": "GH_DECLARED_INPUT",
+      "subject": "installation",
+      "severity": "unknown",
+      "evidence": "declared",
+      "reason": "Input was supplied manually and has not been verified against GitHub.",
+      "recommendation": "Validate the manifest against installation settings."
+    }
+  ],
+  "summary": "Review required; this is not a security certification."
+}
