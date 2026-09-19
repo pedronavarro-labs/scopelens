@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "demo-local": {"command": "npx", "args": ["-y", "example-mcp@latest"], "env": {"GITHUB_TOKEN": "SYNTHETIC_NOT_A_CREDENTIAL"}},
+    "demo-remote": {"url": "http://localhost:8765/mcp"}
+  }
+}

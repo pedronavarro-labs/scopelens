@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "github": {
+    "evidence": "declared",
+    "permissions": {"metadata": "read", "contents": "write", "issues": "write", "administration": "write"},
+    "repository_selection": "all",
+    "repositories_complete": true,
+    "repositories": ["demo/docs", "demo/payments", "demo/production"]
+  }
+}
